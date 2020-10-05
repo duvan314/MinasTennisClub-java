@@ -7,7 +7,7 @@ public class SistemaMinasTennisClub {
 
     public static void main(String[] args) {
         String option;
-        System.out.println("Comentario");
+        System.out.println("Hola");
         while (true) {
             System.out.println("Bienvenido al sistema de Minas Tennis Club");
             System.out.println("Escoja una opción: ");
