@@ -1,13 +1,13 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class SistemaMinasTennisClub {
     public static Scanner input = new Scanner(System.in);
-
-
+    public static ArrayList<Integer> documentos = new ArrayList<>();
+    public static ArrayList<String> contraseñas = new ArrayList<>();
 
     public static void main(String[] args) {
         String option;
-        System.out.println("Duvan calle ese gallo");
         while (true) {
             System.out.println("Bienvenido al sistema de Minas Tennis Club");
             System.out.println("Escoja una opción: ");
@@ -34,13 +34,16 @@ public class SistemaMinasTennisClub {
 
     }
 
+
     private static void ingresar() {
         System.out.println("Digite su documento");
         int documento = input.nextInt();
         System.out.println("Digite su contraseña");
         String contraseña = input.next();
         // Comprobar si existe el usuario en caso de que no dirigir al menú de registrarse con el mensaje "Usted aún no está registrado".
-        // Si existe el usuario, desplegar un menú con los métodos del rol del usuario (Caddie, Jugador, Profesor,...)
+        // Si existe el usuario, desplegar un menú con los métodos del rol del usuario (Caddie, Jugador, Profesor,...
+
+
     }
 
     private static void registrarse() {
@@ -53,7 +56,7 @@ public class SistemaMinasTennisClub {
         int telefono = input.nextInt();
         System.out.println("Digite su nombre");
         String nombre = input.next();
-
+        documentos.add(documento);
 
         System.out.println("¿Cuál es su categoría?");
         System.out.println("0. Principinate");
@@ -90,9 +93,13 @@ public class SistemaMinasTennisClub {
             }
         }
 
-        System.out.println("Digite una contraseña");
+        System.out.println("Digite una contraseña segura");
         String contraseña = input.next();
-        // Se debe condicionar la contraselña a un mínimo de caracteres para la seguridad y además que sea difenete al documento
+        String d =String.valueOf(documento); // cambiando el coduento a string para ser comparable con la contraseña
+        if (!(d.equals(contraseña)) & contraseña.length()>8){
+            contraseñas.add(contraseña);
+        }
+        // La contraseña esta condicionada a un mínimo de 8 caracteres y además que sea difenete al documento
 
         System.out.println("¿Cúal es su relación con Minas Tennis Club");
         System.out.println("1. Jugador");
