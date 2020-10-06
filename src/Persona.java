@@ -17,6 +17,18 @@ public class Persona {
         this.contraseña = contraseña;
     }
 
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", telefono=" + telefono +
+                ", documento=" + documento +
+                ", categoria='" + categoria + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                '}';
+    }
+
     public String getNombre() {
         return nombre;
     }

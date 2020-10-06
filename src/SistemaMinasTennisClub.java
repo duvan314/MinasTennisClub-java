@@ -1,10 +1,19 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SistemaMinasTennisClub {
     public static Scanner input = new Scanner(System.in);
-    public static ArrayList<Integer> documentos = new ArrayList<>();
+    public static ArrayList<Integer> documentos = new ArrayList<>();   ///  sujetos a ser eliminados
     public static ArrayList<String> contraseñas = new ArrayList<>();
+    public static ArrayList<String> nombres = new ArrayList<>();
+    public static ArrayList<String> roles = new ArrayList<>();   // si es jugador cadie etc
+
+    public static ArrayList<Jugador> jugadores = new ArrayList<>();   ///
+    public static ArrayList<CaddieJugador> caddieJugadores = new ArrayList<>();
+    public static ArrayList<Caddie> caddies = new ArrayList<>();
+    public static ArrayList<Profesor> profesores = new ArrayList<>();
+
 
     public static void main(String[] args) {
         String option;
@@ -37,10 +46,63 @@ public class SistemaMinasTennisClub {
 
 
     private static void ingresar() {
-        System.out.println("Digite su documento");
-        int documento = input.nextInt();
-        System.out.println("Digite su contraseña");
-        String contraseña = input.next();
+
+        System.out.println("¿Cúal es su relación con Minas Tennis Club");
+        System.out.println("1. Jugador");
+        System.out.println("2. Profesor");
+        System.out.println("3. Caddie");
+        System.out.println("4. Caddie Jugador");
+
+        String option = input.next();
+        if(option.equals("1")) {
+            System.out.println("Ingresa su documento");
+            int documento = input.nextInt();
+            if (jugadores.contains(documento)) {
+                System.out.println("Ingresa la contraseña");
+                String contraseña = input.next();
+                if (contraseñas.contains(contraseña) & contraseñas.indexOf(contraseña)==jugadores.indexOf(jugadores)){
+                    System.out.println("Ingreso exitoso");
+                } else {
+                    System.out.println("Contraseña incorrecta");
+                    return;
+                }
+            } else {
+                System.out.println("Este usuario no Existe");
+                return;
+            } // agregar sistema menu de jugador
+
+
+
+
+
+
+        }
+
+       /* if (documentos.contains(documento)){
+             indice = documentos.indexOf(documento);
+            System.out.println("Ingresa la contraseña");
+            String contraseña = input.next();
+            if (contraseñas.indexOf(contraseña)==indice){  // comparar inices de contraseña y
+                System.out.println("Ingreso correcto");
+                System.out.println("Hola"+nombres.get(indice)+"\n"+
+                        "Bienvenido al sistema de "+roles.get(indice));
+            }else {
+                System.out.println("Contraseña incorrecta");
+            }
+
+        } else{
+            System.out.println("usuaro no encontrado");
+            return;
+        }*/
+
+        System.out.println("===============");
+
+
+
+
+
+
+
         // Comprobar si existe el usuario en caso de que no dirigir al menú de registrarse con el mensaje "Usted aún no está registrado".
         // Si existe el usuario, desplegar un menú con los métodos del rol del usuario (Caddie, Jugador, Profesor,...
 
@@ -57,6 +119,9 @@ public class SistemaMinasTennisClub {
         int telefono = input.nextInt();
         System.out.println("Digite su nombre");
         String nombre = input.next();
+
+        nombres.add(nombre);
+
         documentos.add(documento);
 
         System.out.println("¿Cuál es su categoría?");
@@ -125,35 +190,38 @@ public class SistemaMinasTennisClub {
         // Según el rol que seleccione se debe desplegar otro menú que solicite al usuario cada una de las instancias propias de él
 
         if (option.equals("1")) {
-            System.out.println("¿Hace usted parte de la escuela de tennis?");
-            System.out.println("1. Si");
-            System.out.println("2. No");
+                roles.add("Jugador");
+                System.out.println("¿Hace usted parte de la escuela de tennis?");
+                System.out.println("1. Si");
+                System.out.println("2. No");
 
-            option = input.next();
-            boolean escuela;
-            if (option.equals("1")) {
-                escuela = true;
-            } else if (option.equals("2")) {
-                escuela = false;
-            } else {
-                System.out.println("Respuesta no valida");
-                return;
-            }
-            System.out.println("¿Está usted en alguna competecia de tennis?");
-            System.out.println("1. Si");
-            System.out.println("2. No");
-            option = input.next();
-            boolean competencia;
-            if (option.equals("1")) {
-                competencia = true;
-            } else if (option.equals("2")) {
-                competencia = false;
-            } else {
-                System.out.println("Respuesta no valida");
-                return;
-            }
-           Jugador jugador = new Jugador(nombre, edad, telefono, documento, categoria, contraseña, escuela, competencia);
+                option = input.next();
+                boolean escuela;
+                if (option.equals("1")) {
+                    escuela = true;
+                } else if (option.equals("2")) {
+                    escuela = false;
+                } else {
+                    System.out.println("Respuesta no valida");
+                    return;
+                }
+                System.out.println("¿Está usted en alguna competecia de tennis?");
+                System.out.println("1. Si");
+                System.out.println("2. No");
+                option = input.next();
+                boolean competencia;
+                if (option.equals("1")) {
+                    competencia = true;
+                } else if (option.equals("2")) {
+                    competencia = false;
+                } else {
+                    System.out.println("Respuesta no valida");
+                    return;
+                }
+                Jugador jugador = new Jugador(nombre, edad, telefono, documento, categoria, contraseña, escuela, competencia);
+            jugadores.add(jugador);
         } else if (option.equals("2")) {
+            roles.add("Profesor");   //------------
             System.out.println("Seleccione su horario de trabajo");
             System.out.println("1. Lunes a sábado de 6:00am a 2:00pm");
             System.out.println("2. Lunes a sábado de 2:00pm a 10:00pm");
@@ -169,7 +237,9 @@ public class SistemaMinasTennisClub {
             }
 
             Profesor profesor = new Profesor(nombre, edad, telefono, documento, categoria, contraseña, horario);
+            profesores.add(profesor);
         } else if (option.equals("3")) {
+            roles.add("Caddie");
             System.out.println("Seleccione su horario de trabajo");
             System.out.println("1. Lunes a sábado de 6:00am a 2:00pm");
             System.out.println("2. Lunes a sábado de 2:00pm a 10:00pm");
@@ -185,7 +255,9 @@ public class SistemaMinasTennisClub {
             }
             Cancha cancha = new Cancha(null, null);
             Caddie caddie = new Caddie(nombre, edad, telefono, documento, categoria, contraseña, horario, cancha);
+            caddies.add(caddie);
         } else if (option.equals("4")) {
+            roles.add("Caddie Jugador");
             System.out.println("Seleccione su horario de trabajo");
             System.out.println("1. Lunes a sábado de 6:00am a 2:00pm");
             System.out.println("2. Lunes a sábado de 2:00pm a 10:00pm");
@@ -200,7 +272,7 @@ public class SistemaMinasTennisClub {
                 System.out.println("Ingresó un horario no valido");
             }
             CaddieJugador caddieJugador = new CaddieJugador(nombre, edad, telefono, documento, categoria, contraseña, horario);
-
+            caddieJugadores.add(caddieJugador);
         }
     }
         private static void cambiarContraseña () {
