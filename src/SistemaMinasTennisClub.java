@@ -9,6 +9,7 @@ public class SistemaMinasTennisClub {
     public static void main(String[] args) {
         String option;
         while (true) {
+            System.out.println("============================================");
             System.out.println("Bienvenido al sistema de Minas Tennis Club");
             System.out.println("Escoja una opción: ");
             System.out.println("1. Ingresar");
@@ -89,17 +90,30 @@ public class SistemaMinasTennisClub {
                 categoria = "Principiante";
             } else {
                 System.out.println("Ingresó una categoría no valida");
-                break;
+
             }
+            break;
         }
 
-        System.out.println("Digite una contraseña segura");
-        String contraseña = input.next();
-        String d =String.valueOf(documento); // cambiando el coduento a string para ser comparable con la contraseña
-        if (!(d.equals(contraseña)) & contraseña.length()>8){
-            contraseñas.add(contraseña);
-        }
+
+         // cambiando el coduento a string para ser comparable con la contraseña
+        String contraseña = null;
+        boolean t = true;
+            System.out.println("Digite una contraseña segura");
+            System.out.println("Diferente al ocumento y comommimino 8 caracteres");
+
+             contraseña = input.next();
+            String d =String.valueOf(documento);
+
         // La contraseña esta condicionada a un mínimo de 8 caracteres y además que sea difenete al documento
+
+            if (!(d.equals(contraseña)) & contraseña.length() > 8) {
+                contraseñas.add(contraseña);
+
+            } else {
+                System.out.println("Contrseña incorrecta");
+                return;
+            }
 
         System.out.println("¿Cúal es su relación con Minas Tennis Club");
         System.out.println("1. Jugador");
@@ -107,6 +121,7 @@ public class SistemaMinasTennisClub {
         System.out.println("3. Caddie");
         System.out.println("4. Caddie Jugador");
         option = input.next();
+
         // Según el rol que seleccione se debe desplegar otro menú que solicite al usuario cada una de las instancias propias de él
 
         if (option.equals("1")) {
