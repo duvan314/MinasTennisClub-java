@@ -14,4 +14,7 @@ public class CaddieJugador extends Persona {
     public void setHorario(String horario) {
         this.horario = horario;
     }
+
+
+
 }

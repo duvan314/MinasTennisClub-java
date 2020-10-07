@@ -24,4 +24,7 @@ public class Caddie extends Persona {
     public void setCancha(Cancha cancha) {
         this.cancha = cancha;
     }
+
+
+
 }

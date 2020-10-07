@@ -5,16 +5,18 @@ public class Persona {
     public  int documento;
     public String categoria;
     public String contraseña;
+    public String Rol;
     // public Sede sede;
 
 
-    public Persona(String nombre, int edad, int telefono, int documento,String categoria, String contraseña) {
+    public Persona(String nombre, int edad, int telefono, int documento,String categoria, String contraseña, String Rol) {
         this.nombre = nombre;
         this.edad = edad;
         this.telefono = telefono;
         this.documento = documento;
         this.categoria = categoria;
         this.contraseña = contraseña;
+        this.Rol = Rol;
     }
 
     @Override
