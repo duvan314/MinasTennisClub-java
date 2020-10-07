@@ -78,4 +78,8 @@ public class Persona {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+
+    public int iContraseña() {
+        return contraseña.indexOf(contraseña);
+    }
 }

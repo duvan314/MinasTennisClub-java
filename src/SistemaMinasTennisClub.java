@@ -1,6 +1,7 @@
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.util.Collections;
 public class SistemaMinasTennisClub {
     public static Scanner input = new Scanner(System.in);
     public static ArrayList<Integer> documentos = new ArrayList<>();   ///  sujetos a ser eliminados
@@ -276,13 +277,20 @@ public class SistemaMinasTennisClub {
         return false;
     }
 
+
+
     private static void VerificarContraseña(String contraseña, int documento) {
 
-        for (Persona persona : personas) {
-            for (int i = 0; i < persona.contraseña.length(); i++) {
-            }
+        for(Persona persona:personas){
+
 
         }
+
+
+           int j =  Collections.indexOfSubList(personas, (List<?>) new Persona(null, 0, 0, 0, null, contraseña, null));
+
+
+            String s = personas.get(j).Rol;
+        }
     }
-}
 
