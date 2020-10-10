@@ -5,31 +5,22 @@ public class Persona {
     public  int documento;
     public String categoria;
     public String contraseña;
-    public String Rol;
+    public String rol ;
     // public Sede sede;
 
 
-    public Persona(String nombre, int edad, int telefono, int documento,String categoria, String contraseña, String Rol) {
+
+    public Persona(String nombre, int edad, int telefono, int documento, String categoria, String contraseña, String rol) {
         this.nombre = nombre;
         this.edad = edad;
         this.telefono = telefono;
         this.documento = documento;
         this.categoria = categoria;
         this.contraseña = contraseña;
-        this.Rol = Rol;
+        this.rol = rol;
     }
 
-    @Override
-    public String toString() {
-        return "Persona{" +
-                "nombre='" + nombre + '\'' +
-                ", edad=" + edad +
-                ", telefono=" + telefono +
-                ", documento=" + documento +
-                ", categoria='" + categoria + '\'' +
-                ", contraseña='" + contraseña + '\'' +
-                '}';
-    }
+
 
     public String getNombre() {
         return nombre;
@@ -81,5 +72,18 @@ public class Persona {
 
     public int iContraseña() {
         return contraseña.indexOf(contraseña);
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", telefono=" + telefono +
+                ", documento=" + documento +
+                ", categoria='" + categoria + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", Rol='" + rol + '\'' +
+                '}';
     }
 }

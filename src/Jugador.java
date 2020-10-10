@@ -2,9 +2,8 @@
     public boolean escuela;
     public boolean competencia;
 
-    public Jugador(String nombre, int edad, int telefono, int documento,String categoria, String contraseña, boolean escuela, boolean competencia) {
-        super(nombre, edad, telefono, documento, categoria, contraseña);
-        this.escuela = escuela;
+    public Jugador(String nombre, int edad, int telefono, int documento,String categoria, String contraseña, boolean escuela, boolean competencia, String rol) {
+        super(nombre, edad, telefono, documento, categoria, contraseña, rol);
         this.competencia = competencia;
     }
 

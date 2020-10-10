@@ -3,8 +3,8 @@ public class Caddie extends Persona {
     public Cancha cancha;
 
 
-    public Caddie(String nombre, int edad, int telefono, int documento, String categoria, String contraseña, String horario, Cancha cancha) {
-        super(nombre, edad, telefono, documento, categoria, contraseña);
+    public Caddie(String nombre, int edad, int telefono, int documento, String categoria, String contraseña, String horario, Cancha cancha, String rol) {
+        super(nombre, edad, telefono, documento, categoria, contraseña,  rol);
         this.horario = horario;
         this.cancha = cancha;
     }

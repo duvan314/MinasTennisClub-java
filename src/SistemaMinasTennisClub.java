@@ -1,7 +1,6 @@
-import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
+
 public class SistemaMinasTennisClub {
     public static Scanner input = new Scanner(System.in);
     public static ArrayList<Integer> documentos = new ArrayList<>();   ///  sujetos a ser eliminados
@@ -54,11 +53,16 @@ public class SistemaMinasTennisClub {
         if (VerificarUsuario(documento)) {
             System.out.println("Ingresa la contraseña");
             String contraseña = input.next();
-          /*  if (VerificarContraseña(contraseña, documento)) {
+            if (VerificarContraseña(contraseña, documento)){
+                System.out.println("acceso permitido");
 
+                System.out.println("Bienvenido");
 
-            } */
-
+            }else {
+                System.out.println("error!!!!!!!!!!, contraseña incorrecta");
+            }
+        } else{
+            System.out.println(documento+" No es un usuario correcto");
         }
 
 
@@ -73,6 +77,41 @@ public class SistemaMinasTennisClub {
 
         System.out.println("Dígite su documento");
         int documento = input.nextInt();
+
+        if (VerificarUsuario(documento)){
+            System.out.println("El usuario "+documento+" ya Existente");
+            System.out.println();
+            return;
+        }
+
+        // cambiando el coduento a string para ser comparable con la contraseña
+        String contraseña1 = null;
+        System.out.println("Digite una contraseña segura");
+        System.out.println("Diferente al ocumento y comommimino 8 caracteres");
+
+        contraseña1 = input.next();
+        String d = String.valueOf(documento);
+
+        // La contraseña esta condicionada a un mínimo de 8 caracteres y además que sea difenete al documento
+
+        if (!(d.equals(contraseña1)) & contraseña1.length() > 8) {
+            contraseñas.add(contraseña1);
+            System.out.println("Contraseña segura");
+
+        } else {
+            System.out.println("Contrseña incorrecta");
+            return;
+        }
+        System.out.println("Escribe de nuevo la contraseña");
+        String contraseña2 = input.next();
+        if(!contraseña1.equals(contraseña2)){
+            System.out.println("Las Contraseñas no coinsiden ");
+            return;
+        }
+
+        String contraseña = contraseña1;
+
+
         System.out.println("Digite su edad");
         int edad = input.nextInt();
         System.out.println("Digite su teléfono");
@@ -80,9 +119,6 @@ public class SistemaMinasTennisClub {
         System.out.println("Digite su nombre");
         String nombre = input.next();
 
-        nombres.add(nombre);
-
-        documentos.add(documento);
 
         System.out.println("¿Cuál es su categoría?");
         System.out.println("0. Principinate");
@@ -120,26 +156,6 @@ public class SistemaMinasTennisClub {
             break;
         }
 
-
-        // cambiando el coduento a string para ser comparable con la contraseña
-        String contraseña = null;
-        boolean t = true;
-        System.out.println("Digite una contraseña segura");
-        System.out.println("Diferente al ocumento y comommimino 8 caracteres");
-
-        contraseña = input.next();
-        String d = String.valueOf(documento);
-
-        // La contraseña esta condicionada a un mínimo de 8 caracteres y además que sea difenete al documento
-
-        if (!(d.equals(contraseña)) & contraseña.length() > 8) {
-            contraseñas.add(contraseña);
-
-        } else {
-            System.out.println("Contrseña incorrecta");
-            return;
-        }
-
         System.out.println("¿Cúal es su relación con Minas Tennis Club");
         System.out.println("1. Jugador");
         System.out.println("2. Profesor");
@@ -150,7 +166,7 @@ public class SistemaMinasTennisClub {
         // Según el rol que seleccione se debe desplegar otro menú que solicite al usuario cada una de las instancias propias de él
 
         if (option.equals("1")) {
-            roles.add("Jugador");
+            String rol = "Jugador";
             System.out.println("¿Hace usted parte de la escuela de tennis?");
             System.out.println("1. Si");
             System.out.println("2. No");
@@ -178,13 +194,13 @@ public class SistemaMinasTennisClub {
                 System.out.println("Respuesta no valida");
                 return;
             }
-            Jugador jugador = new Jugador(nombre, edad, telefono, documento, categoria, contraseña, escuela, competencia);
+            Jugador jugador = new Jugador(nombre, edad, telefono, documento, categoria, contraseña, escuela, competencia, rol);
             jugadores.add(jugador);
             String Rol = "Jugador";
             Persona persona = new Persona(nombre, edad, telefono, documento, categoria, contraseña, Rol);
             personas.add(persona);
         } else if (option.equals("2")) {
-            roles.add("Profesor");   //------------
+            String rol = "Profesor";   //------------
             System.out.println("Seleccione su horario de trabajo");
             System.out.println("1. Lunes a sábado de 6:00am a 2:00pm");
             System.out.println("2. Lunes a sábado de 2:00pm a 10:00pm");
@@ -199,13 +215,13 @@ public class SistemaMinasTennisClub {
                 System.out.println("Ingresó un horario no valido");
             }
 
-            Profesor profesor = new Profesor(nombre, edad, telefono, documento, categoria, contraseña, horario);
+            Profesor profesor = new Profesor(nombre, edad, telefono, documento, categoria, contraseña, horario, rol );
             profesores.add(profesor);
             String Rol = "Profesor";
             Persona persona = new Persona(nombre, edad, telefono, documento, categoria, contraseña, Rol);
             personas.add(persona);
         } else if (option.equals("3")) {
-            roles.add("Caddie");
+            String rol = "Caddie";
             System.out.println("Seleccione su horario de trabajo");
             System.out.println("1. Lunes a sábado de 6:00am a 2:00pm");
             System.out.println("2. Lunes a sábado de 2:00pm a 10:00pm");
@@ -220,9 +236,10 @@ public class SistemaMinasTennisClub {
                 System.out.println("Ingresó un horario no valido");
             }
             Cancha cancha = new Cancha(null, null);
-            Caddie caddie = new Caddie(nombre, edad, telefono, documento, categoria, contraseña, horario, cancha);
+            Caddie caddie = new Caddie(nombre, edad, telefono, documento, categoria, contraseña, horario, cancha, rol);
             caddies.add(caddie);
         } else if (option.equals("4")) {
+            String rol = "Caddie Jugador";
             System.out.println("Seleccione su horario de trabajo");
             System.out.println("1. Lunes a sábado de 6:00am a 2:00pm");
             System.out.println("2. Lunes a sábado de 2:00pm a 10:00pm");
@@ -236,7 +253,7 @@ public class SistemaMinasTennisClub {
             } else {
                 System.out.println("Ingresó un horario no valido");
             }
-            CaddieJugador caddieJugador = new CaddieJugador(nombre, edad, telefono, documento, categoria, contraseña, horario);
+            CaddieJugador caddieJugador = new CaddieJugador(nombre, edad, telefono, documento, categoria, contraseña, horario, rol);
             caddieJugadores.add(caddieJugador);
             String Rol = "Caddie Jugador";
             Persona persona = new Persona(nombre, edad, telefono, documento, categoria, contraseña, Rol);
@@ -278,19 +295,18 @@ public class SistemaMinasTennisClub {
     }
 
 
+    private static boolean  VerificarContraseña(String contraseña, int documento) {
 
-    private static void VerificarContraseña(String contraseña, int documento) {
-
-        for(Persona persona:personas){
-
-
+        for (int i = 0; i < personas.size(); i++) {
+            if (personas.get(i).documento == documento & personas.get(i).documento==documento) {
+                // indice ddonde esta el usuario
+                return true;
+            }
         }
 
 
-           int j =  Collections.indexOfSubList(personas, (List<?>) new Persona(null, 0, 0, 0, null, contraseña, null));
-
-
-            String s = personas.get(j).Rol;
-        }
+        return false;
     }
+
+}
 

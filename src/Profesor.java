@@ -4,8 +4,8 @@ import java.util.ArrayList;
     public String horario;
     ArrayList<Jugador> alumno = new ArrayList<>();
 
-    public Profesor(String nombre, int edad, int telefono, int documento,String categoria, String contraseña, String horario) {
-        super(nombre, edad, telefono, documento, categoria, contraseña);
+    public Profesor(String nombre, int edad, int telefono, int documento,String categoria, String contraseña, String horario, String rol) {
+        super(nombre, edad, telefono, documento, categoria, contraseña, rol);
         this.horario = horario;
     }
 
