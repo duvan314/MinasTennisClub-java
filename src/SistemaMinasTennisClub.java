@@ -14,6 +14,9 @@ public class SistemaMinasTennisClub {
     public static ArrayList<Caddie> caddies = new ArrayList<>();
     public static ArrayList<Profesor> profesores = new ArrayList<>();
     public static ArrayList<Persona> personas = new ArrayList<>();
+    public static ArrayList<Cancha> canchas = new ArrayList<>();
+
+
 
 
     public static void main(String[] args) {
@@ -44,7 +47,6 @@ public class SistemaMinasTennisClub {
 
 
     }
-    
 
 
     private static void ingresar() {
@@ -58,12 +60,12 @@ public class SistemaMinasTennisClub {
             System.out.println("Ingresa la contraseña");
             String contraseña = input.next();
             if (VerificarContraseña(contraseña, documento)){
-                System.out.println("Acceso permitido");
+                System.out.println("acceso permitido");
 
-                System.out.println("Bienvenido");
+                System.out.println("Bienvenido + jugar caddie");
 
             }else {
-                System.out.println("Error!!!!!!!!!!, contraseña incorrecta");
+                System.out.println("error!!!!!!!!!!, contraseña incorrecta");
             }
         } else{
             System.out.println(documento+" No es un usuario correcto");
@@ -86,6 +88,7 @@ public class SistemaMinasTennisClub {
             System.out.println();
         }else{
             System.out.println("Documento incorrecto");
+            return;
         }
 
 
