@@ -27,6 +27,16 @@
         this.competencia = competencia;
     }
 
+     @Override
+     public String toString() {
+         return "Jugador{" +
+                 "nombre='" + nombre + '\'' +
+                 ", edad=" + edad +
+                 ", telefono=" + telefono +
+                 ", documento=" + documento +
+                 ", categoria='" + categoria + '\'' +
+                 ", rol='" + rol + '\'' +
+                 '}';
+     }
 
-
-}
+ }

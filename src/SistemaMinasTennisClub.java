@@ -18,9 +18,19 @@ public class SistemaMinasTennisClub {
 
 
 
+    public static  String[] TipoCancha = new String[]{ "Tipo uno" , "Tipo dos", "Tipo tres"};
 
     public static void main(String[] args) {
+
+        AregarCancha();
+        CancaDisponible();
+
+
+
+
+
         String option;
+
         while (true) {
             System.out.println("============================================");
             System.out.println("Bienvenido al sistema de Minas Tennis Club");
@@ -49,12 +59,14 @@ public class SistemaMinasTennisClub {
     }
 
 
+
     private static void ingresar() {
 
         //for (int i = 0; i < personas.size(); i++) { System.out.println(personas.get(i)); }
 
         System.out.println("Ingresa su documento");
         int documento = input.nextInt();
+
 
         if (VerificarUsuario(documento)) {
             System.out.println("Ingresa la contraseña");
@@ -212,9 +224,10 @@ public class SistemaMinasTennisClub {
             }
             Jugador jugador = new Jugador(nombre, edad, telefono, documento, categoria, contraseña, escuela, competencia, rol);
             jugadores.add(jugador);
-            String Rol = "Jugador";
-            Persona persona = new Persona(nombre, edad, telefono, documento, categoria, contraseña, Rol);
+
+            Persona persona = new Persona(nombre, edad, telefono, documento, categoria, contraseña, rol);
             personas.add(persona);
+
         } else if (option.equals("2")) {
             String rol = "Profesor";   //------------
             System.out.println("Seleccione su horario de trabajo");
@@ -251,7 +264,7 @@ public class SistemaMinasTennisClub {
             } else {
                 System.out.println("Ingresó un horario no valido");
             }
-            Cancha cancha = new Cancha(null, null);
+            Cancha cancha = new Cancha(null, null, false, 0);
             Caddie caddie = new Caddie(nombre, edad, telefono, documento, categoria, contraseña, horario, cancha, rol);
             caddies.add(caddie);
         } else if (option.equals("4")) {
@@ -297,6 +310,8 @@ public class SistemaMinasTennisClub {
 
     }
 
+
+
     private static boolean VerificarUsuario(int documento) {
 
         for (int i = 0; i < personas.size(); i++) {
@@ -312,7 +327,6 @@ public class SistemaMinasTennisClub {
 
 
     private static boolean  VerificarContraseña(String contraseña, int documento) {
-
         for (int i = 0; i < personas.size(); i++) {
             if (personas.get(i).documento == documento & personas.get(i).documento==documento) {
                 // indice ddonde esta el usuario
@@ -323,6 +337,65 @@ public class SistemaMinasTennisClub {
 
         return false;
     }
+
+
+
+
+    private static void AregarCancha() {
+
+        System.out.println("Ingrese el tipo de cancha");
+
+        System.out.println("1. Tipo uno");
+        System.out.println("1. TIpo dos");
+        System.out.println("2. Tipo tres");
+
+        String tipo = null;
+
+        String option = input.next();
+
+        if (option.equals("1")) {
+            tipo = TipoCancha[0];
+        } else if (option.equals("2")) {
+            tipo = TipoCancha[1];
+        } else if (option.equals("3")) {
+            tipo = TipoCancha[2];
+        } else {
+            System.out.println("Valor invalido");
+
+        }
+
+        boolean libre = true;
+
+        String turnos = null;    // Que es turnos?
+
+        int id = canchas.size();
+
+        Cancha cancha = new Cancha(turnos, tipo, libre, id);
+        System.out.println("" +
+                "Cancha Registrada" +
+                "=====================");
+
+        canchas.add(cancha);
+
+
+    }
+
+
+    private static void CancaDisponible() {
+
+        System.out.println("Las Canchas disponibles son: ");
+
+        for (int i = 0; i < canchas.size(); i++) {
+            if (canchas.get(i).libre){
+                System.out.println("Cancha Nº: "+canchas.get(i).id+", Tipo: "+ canchas.get(i).tipo);
+            }
+
+        }
+
+
+    }
+
+
 
 }
 
