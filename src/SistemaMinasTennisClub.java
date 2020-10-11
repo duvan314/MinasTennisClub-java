@@ -60,7 +60,7 @@ public class SistemaMinasTennisClub {
             System.out.println("Ingresa la contraseña");
             String contraseña = input.next();
             if (VerificarContraseña(contraseña, documento)){
-                System.out.println("acceso permitido");
+                System.out.println("Acceso permitido");
 
                 System.out.println("Bienvenido + jugar caddie");
 
