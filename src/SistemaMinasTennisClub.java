@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.*;
 
 public class SistemaMinasTennisClub {
     public static Scanner input = new Scanner(System.in);
@@ -47,6 +48,8 @@ public class SistemaMinasTennisClub {
 
     private static void ingresar() {
 
+        //for (int i = 0; i < personas.size(); i++) { System.out.println(personas.get(i)); }
+
         System.out.println("Ingresa su documento");
         int documento = input.nextInt();
 
@@ -77,6 +80,13 @@ public class SistemaMinasTennisClub {
 
         System.out.println("Dígite su documento");
         int documento = input.nextInt();
+
+        if(documento>1000000){
+            System.out.println();
+        }else{
+            System.out.println("Documento incorrecto");
+        }
+
 
         if (VerificarUsuario(documento)){
             System.out.println("El usuario "+documento+" ya Existente");
