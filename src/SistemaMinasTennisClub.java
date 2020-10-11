@@ -65,7 +65,7 @@ public class SistemaMinasTennisClub {
                 System.out.println("Bienvenido + jugar caddie");
 
             }else {
-                System.out.println("error!!!!!!!!!!, contraseña incorrecta");
+                System.out.println("Error!!!!!!!!!!, contraseña incorrecta");
             }
         } else{
             System.out.println(documento+" No es un usuario correcto");
@@ -142,6 +142,8 @@ public class SistemaMinasTennisClub {
         System.out.println("4. Tercera");
         System.out.println("5. Cuarta");
         System.out.println("6. Quinta");
+
+
 
 
         String option;
