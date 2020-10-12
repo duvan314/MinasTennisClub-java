@@ -77,13 +77,15 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" +
-                "nombre='" + nombre + '\'' +
-                ", edad=" + edad +
-                ", telefono=" + telefono +
-                ", documento=" + documento +
-                ", categoria='" + categoria + '\'' +
-                ", contraseña='" + contraseña + '\'' +
-                ", Rol='" + rol + '\'' +
+                "nombre='" + nombre + '\'' + "\n"+
+                ", edad=" + edad +"\n"+
+                ", telefono=" + telefono +"\n"+
+                ", documento=" + documento +"\n"+
+                ", categoria='" + categoria + '\'' +"\n"+
+                ", contraseña='" + contraseña + '\'' +"\n"+
+                ", Rol='" + rol + '\'' +"\n"+
                 '}';
     }
+
+
 }

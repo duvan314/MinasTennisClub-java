@@ -3,6 +3,7 @@ public class Cancha {
     public String turnos;
     public String tipo;
     public boolean libre;
+
    // public Caddie caddie;
 
     public Cancha(String turnos, String tipo, boolean libre, int id/*, Caddie caddie*/) {

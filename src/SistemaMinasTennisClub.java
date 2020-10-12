@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.*;
@@ -17,16 +18,36 @@ public class SistemaMinasTennisClub {
     public static ArrayList<Cancha> canchas = new ArrayList<>();
 
 
+    public static String[] TipoCancha = new String[]{"Cancha", "Mini Cancha", "Muro"};
 
-    public static  String[] TipoCancha = new String[]{ "Tipo uno" , "Tipo dos", "Tipo tres"};
+    public static String[] buscar = new String[]{"Nombre", "Edad", "Telefono"};
 
     public static void main(String[] args) {
 
-        AregarCancha();
-        CancaDisponible();
+
+        Persona persona1 = new Persona("duvan", 52, 312425, 147852369, "1", "25852741258", "Profesor");
+        personas.add(persona1);
+        Persona persona2 = new Persona("duvan2", 52, 312425, 147852369, "1", "25852741258", "Profesor");
+        personas.add(persona2);
+        Persona persona3 = new Persona("duvan3", 524443, 312425, 147852369, "1", "25852741258", "Profesor");
+        personas.add(persona3);
+        Persona persona4 = new Persona("duvan4", 524443, 312425, 147852369, "1", "25852741258", "Profesor");
+        personas.add(persona4);
 
 
+        BuscarPersona();
+//        AregarCancha();
+//        CanchaDisponible();
+//        FechaMañana();
 
+
+        // canchas predeterminadas
+        Cancha cancha1 = new Cancha("1", "Cancha", true, 1);
+        Cancha cancha2 = new Cancha("2", "Mini Cancha", true, 2);
+        Cancha cancha3 = new Cancha("3", "Cancha", true, 3);
+        canchas.add(cancha1);
+        canchas.add(cancha2);
+        canchas.add(cancha3);
 
 
         String option;
@@ -59,7 +80,6 @@ public class SistemaMinasTennisClub {
     }
 
 
-
     private static void ingresar() {
 
         //for (int i = 0; i < personas.size(); i++) { System.out.println(personas.get(i)); }
@@ -71,16 +91,16 @@ public class SistemaMinasTennisClub {
         if (VerificarUsuario(documento)) {
             System.out.println("Ingresa la contraseña");
             String contraseña = input.next();
-            if (VerificarContraseña(contraseña, documento)){
+            if (VerificarContraseña(contraseña, documento)) {
                 System.out.println("Acceso permitido");
 
                 System.out.println("Bienvenido + jugar caddie");
 
-            }else {
+            } else {
                 System.out.println("Error!!!!!!!!!!, contraseña incorrecta");
             }
-        } else{
-            System.out.println(documento+" No es un usuario correcto");
+        } else {
+            System.out.println(documento + " No es un usuario correcto");
         }
 
 
@@ -96,16 +116,16 @@ public class SistemaMinasTennisClub {
         System.out.println("Dígite su documento");
         int documento = input.nextInt();
 
-        if(documento>1000000){
+        if (documento > 1000000) {
             System.out.println();
-        }else{
+        } else {
             System.out.println("Documento incorrecto");
             return;
         }
 
 
-        if (VerificarUsuario(documento)){
-            System.out.println("El usuario "+documento+" ya Existente");
+        if (VerificarUsuario(documento)) {
+            System.out.println("El usuario " + documento + " ya Existente");
             System.out.println();
             return;
         }
@@ -130,7 +150,7 @@ public class SistemaMinasTennisClub {
         }
         System.out.println("Escribe de nuevo la contraseña");
         String contraseña2 = input.next();
-        if(!contraseña1.equals(contraseña2)){
+        if (!contraseña1.equals(contraseña2)) {
             System.out.println("Las Contraseñas no coinsiden ");
             return;
         }
@@ -154,8 +174,6 @@ public class SistemaMinasTennisClub {
         System.out.println("4. Tercera");
         System.out.println("5. Cuarta");
         System.out.println("6. Quinta");
-
-
 
 
         String option;
@@ -230,6 +248,7 @@ public class SistemaMinasTennisClub {
 
         } else if (option.equals("2")) {
             String rol = "Profesor";   //------------
+            boolean libre = true;
             System.out.println("Seleccione su horario de trabajo");
             System.out.println("1. Lunes a sábado de 6:00am a 2:00pm");
             System.out.println("2. Lunes a sábado de 2:00pm a 10:00pm");
@@ -244,7 +263,7 @@ public class SistemaMinasTennisClub {
                 System.out.println("Ingresó un horario no valido");
             }
 
-            Profesor profesor = new Profesor(nombre, edad, telefono, documento, categoria, contraseña, horario, rol );
+            Profesor profesor = new Profesor(nombre, edad, telefono, documento, categoria, contraseña, horario, rol, libre);
             profesores.add(profesor);
             String Rol = "Profesor";
             Persona persona = new Persona(nombre, edad, telefono, documento, categoria, contraseña, Rol);
@@ -311,11 +330,10 @@ public class SistemaMinasTennisClub {
     }
 
 
-
     private static boolean VerificarUsuario(int documento) {
 
         for (int i = 0; i < personas.size(); i++) {
-            if (personas.get(i).documento == documento) {
+            if (personas.get(i).getDocumento() == documento) {
                 // indice ddonde esta el usuario
                 return true;
             }
@@ -326,9 +344,9 @@ public class SistemaMinasTennisClub {
     }
 
 
-    private static boolean  VerificarContraseña(String contraseña, int documento) {
+    private static boolean VerificarContraseña(String contraseña, int documento) {
         for (int i = 0; i < personas.size(); i++) {
-            if (personas.get(i).documento == documento & personas.get(i).documento==documento) {
+            if (personas.get(i).documento == documento & personas.get(i).documento == documento) {
                 // indice ddonde esta el usuario
                 return true;
             }
@@ -337,17 +355,15 @@ public class SistemaMinasTennisClub {
 
         return false;
     }
-
-
 
 
     private static void AregarCancha() {
 
         System.out.println("Ingrese el tipo de cancha");
 
-        System.out.println("1. Tipo uno");
-        System.out.println("1. TIpo dos");
-        System.out.println("2. Tipo tres");
+        System.out.println("1. " + TipoCancha[0]);
+        System.out.println("2. " + TipoCancha[1]);
+        System.out.println("3. " + TipoCancha[2]);
 
         String tipo = null;
 
@@ -368,7 +384,7 @@ public class SistemaMinasTennisClub {
 
         String turnos = null;    // Que es turnos?
 
-        int id = canchas.size();
+        int id = canchas.size() + 1;
 
         Cancha cancha = new Cancha(turnos, tipo, libre, id);
         System.out.println("" +
@@ -381,13 +397,13 @@ public class SistemaMinasTennisClub {
     }
 
 
-    private static void CancaDisponible() {
+    private static void CanchaDisponible() {
 
         System.out.println("Las Canchas disponibles son: ");
 
         for (int i = 0; i < canchas.size(); i++) {
-            if (canchas.get(i).libre){
-                System.out.println("Cancha Nº: "+canchas.get(i).id+", Tipo: "+ canchas.get(i).tipo);
+            if (canchas.get(i).libre) {
+                System.out.println("Cancha Nº: " + canchas.get(i).id + ", Tipo: " + canchas.get(i).tipo);
             }
 
         }
@@ -395,7 +411,87 @@ public class SistemaMinasTennisClub {
 
     }
 
+    public static void FechaMañana() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy");
+        Calendar c = Calendar.getInstance();
+
+        //Number of Days to add
+        c.add(Calendar.DAY_OF_MONTH, 1);
+        //Date after adding the days to the given date
+        String newDate = sdf.format(c.getTime());
+        //Displaying the new Date after addition of Days
+        System.out.println(newDate);
+    }
 
 
+    private static void BuscarPersona() {
+
+        System.out.println("Buscar por: ");
+
+        System.out.println("1. Edad");
+        System.out.println("2. Telefono");
+        System.out.println("3. Rol");
+        String option = input.next();
+
+        if (option.equals("1")) {
+            System.out.println("Encontrar: ");
+
+            System.out.println("1. Mayor edad");
+            System.out.println("2. Menor edad");
+            System.out.println("3. Rango de edad");
+            String option2 = input.next();
+
+            if (option2.equals("1")) {
+                int edad = 0;
+                int k = 0;
+                for (int i = 0; i < personas.size(); i++) {
+                    if (personas.get(i).getEdad() > edad) {
+                        edad = personas.get(i).getEdad();
+                        k = i;
+                    }
+
+
+                }
+                for (int i = 0; i < personas.size(); i++) {
+                    if (personas.get(k).getEdad() == personas.get(i).getEdad()) {
+                        System.out.println(personas.get(i));
+                    }
+                }
+
+            } else if (option2.equals("2")) {
+                int edad = 10000;
+                int k = 0;
+                for (int i = 0; i < personas.size(); i++) {
+                    if (personas.get(i).getEdad() < edad) {
+                        edad = personas.get(i).getEdad();
+                        k = i;
+                    }
+
+                }
+                for (int i = 0; i < personas.size(); i++) {
+                    if (personas.get(k).getEdad() == personas.get(i).getEdad()) {
+                        System.out.println(personas.get(i));
+                    }
+                }
+                }else if (option.equals("3")) {
+                    System.out.println("el ango de edad es: ");
+                } else {
+
+                }
+            }
+
+        } else if (option.equals("2")) {
+                System.out.println("  ");
+        } else if (option.equals("3")) {
+
+        } else {
+                System.out.println("Valor invalido");
+
+        }
+
+
+    }
 }
+
+
 
