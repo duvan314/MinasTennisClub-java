@@ -473,15 +473,14 @@ public class SistemaMinasTennisClub {
                         System.out.println(personas.get(i));
                     }
                 }
-                }else if (option.equals("3")) {
-                    System.out.println("el ango de edad es: ");
-                } else {
+            } else if (option.equals("3")) {
+                System.out.println("el ango de edad es: ");
+            } else {
 
-                }
             }
-
         } else if (option.equals("2")) {
                 System.out.println("  ");
+
         } else if (option.equals("3")) {
 
         } else {
