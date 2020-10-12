@@ -17,37 +17,36 @@ public class SistemaMinasTennisClub {
     public static ArrayList<Persona> personas = new ArrayList<>();
     public static ArrayList<Cancha> canchas = new ArrayList<>();
 
-
+    public static ArrayList<Sede> sedes = new ArrayList<>();
     public static String[] TipoCancha = new String[]{"Cancha", "Mini Cancha", "Muro"};
 
-    public static String[] buscar = new String[]{"Nombre", "Edad", "Telefono"};
 
     public static void main(String[] args) {
 
+//
+//        Persona persona1 = new Persona("duvan", 52, 312425, 147852369, "1", "25852741258", "Profesor");
+//        personas.add(persona1);
+//        Persona persona2 = new Persona("duvan2", 52, 312425, 147852369, "1", "25852741258", "Profesor");
+//        personas.add(persona2);
+//        Persona persona3 = new Persona("duvan3", 524443, 312425, 147852369, "1", "25852741258", "Profesor");
+//        personas.add(persona3);
+//        Persona persona4 = new Persona("duvan4", 524443, 312425, 147852369, "1", "25852741258", "Profesor");
+//        personas.add(persona4);
 
-        Persona persona1 = new Persona("duvan", 52, 312425, 147852369, "1", "25852741258", "Profesor");
-        personas.add(persona1);
-        Persona persona2 = new Persona("duvan2", 52, 312425, 147852369, "1", "25852741258", "Profesor");
-        personas.add(persona2);
-        Persona persona3 = new Persona("duvan3", 524443, 312425, 147852369, "1", "25852741258", "Profesor");
-        personas.add(persona3);
-        Persona persona4 = new Persona("duvan4", 524443, 312425, 147852369, "1", "25852741258", "Profesor");
-        personas.add(persona4);
 
 
-        BuscarPersona();
 //        AregarCancha();
 //        CanchaDisponible();
 //        FechaMañana();
 
 
         // canchas predeterminadas
-        Cancha cancha1 = new Cancha("1", "Cancha", true, 1);
-        Cancha cancha2 = new Cancha("2", "Mini Cancha", true, 2);
-        Cancha cancha3 = new Cancha("3", "Cancha", true, 3);
-        canchas.add(cancha1);
-        canchas.add(cancha2);
-        canchas.add(cancha3);
+//        Cancha cancha1 = new Cancha("1", "Cancha", true, 1,ciudades[0], sedesMedellin[0]);
+//        Cancha cancha2 = new Cancha("2", "Mini Cancha", true, 2,ciudades[0], sedesMedellin[0]);
+//        Cancha cancha3 = new Cancha("3", "Cancha", true, 3,ciudades[1], sedesBogota[0]);
+//        canchas.add(cancha1);
+//        canchas.add(cancha2);
+//        canchas.add(cancha3);
 
 
         String option;
@@ -240,14 +239,49 @@ public class SistemaMinasTennisClub {
                 System.out.println("Respuesta no valida");
                 return;
             }
+
+            System.out.println("Ingresa ciuad");
+            String ciuad = null;
+            for (int i = 0; i < sedes.size(); i++) {
+                System.out.println(i+". "+sedes.get(i).ciudad);
+            }
+
+            int optionInt = input.nextInt();
+
+            if (optionInt <sedes.size()){
+                ciuad = sedes.get(optionInt).ciudad;
+
+            }else {
+                System.out.println("Dato no valido");
+                return; }
+
+            System.out.println("Ingresa Sede");
+            String nombreSede = null;
+            for (int i = 0; i < sedes.size(); i++) {
+                System.out.println(i+". "+sedes.get(i).ciudad);
+            }
+
+           optionInt = input.nextInt();
+
+            if (optionInt <sedes.size()){
+                nombreSede = sedes.get(optionInt).nombre;
+
+            }else {
+                System.out.println("Dato no valido");
+                return;
+            }
+
+
+            Sede sede = new Sede(nombreSede, ciuad);
+            sedes.add(sede);
             Jugador jugador = new Jugador(nombre, edad, telefono, documento, categoria, contraseña, escuela, competencia, rol);
             jugadores.add(jugador);
 
-            Persona persona = new Persona(nombre, edad, telefono, documento, categoria, contraseña, rol);
+            Persona persona = new Persona(nombre, sede, edad, telefono, documento, categoria, contraseña, rol);
             personas.add(persona);
 
         } else if (option.equals("2")) {
-            String rol = "Profesor";   //------------
+            String Rol = "Profesor";   //------------
             boolean libre = true;
             System.out.println("Seleccione su horario de trabajo");
             System.out.println("1. Lunes a sábado de 6:00am a 2:00pm");
@@ -263,10 +297,43 @@ public class SistemaMinasTennisClub {
                 System.out.println("Ingresó un horario no valido");
             }
 
-            Profesor profesor = new Profesor(nombre, edad, telefono, documento, categoria, contraseña, horario, rol, libre);
+            System.out.println("Ingresa ciuad");
+            String ciuad = null;
+            for (int i = 0; i < sedes.size(); i++) {
+                System.out.println(i+". "+sedes.get(i).ciudad);
+            }
+
+            int optionInt = input.nextInt();
+
+            if (optionInt <sedes.size()){
+                ciuad = sedes.get(optionInt).ciudad;
+
+            }else {
+                System.out.println("Dato no valido");
+                return;
+            }
+
+            System.out.println("Ingresa Sede");
+            String nombreSede = null;
+            for (int i = 0; i < sedes.size(); i++) {
+                System.out.println(i+". "+sedes.get(i).ciudad);
+            }
+
+            optionInt = input.nextInt();
+
+            if (optionInt <sedes.size()){
+                nombreSede = sedes.get(optionInt).nombre;
+
+            }else {
+                System.out.println("Dato no valido");
+                return;
+            }
+
+            Sede sede = new Sede(nombreSede, ciuad);
+            Profesor profesor = new Profesor(nombre, edad, telefono, documento, categoria, contraseña, horario, Rol, libre);
             profesores.add(profesor);
-            String Rol = "Profesor";
-            Persona persona = new Persona(nombre, edad, telefono, documento, categoria, contraseña, Rol);
+
+            Persona persona = new Persona(nombre, sede, edad, telefono, documento, categoria, contraseña, Rol);
             personas.add(persona);
         } else if (option.equals("3")) {
             String rol = "Caddie";
@@ -283,11 +350,11 @@ public class SistemaMinasTennisClub {
             } else {
                 System.out.println("Ingresó un horario no valido");
             }
-            Cancha cancha = new Cancha(null, null, false, 0);
-            Caddie caddie = new Caddie(nombre, edad, telefono, documento, categoria, contraseña, horario, cancha, rol);
-            caddies.add(caddie);
+            //Cancha cancha = new Cancha(null, null, false,);
+            //Caddie caddie = new Caddie(nombre, edad, telefono, documento, categoria, contraseña, horario, cancha, rol);
+           // caddies.add(caddie);
         } else if (option.equals("4")) {
-            String rol = "Caddie Jugador";
+            String Rol = "Caddie Jugador";
             System.out.println("Seleccione su horario de trabajo");
             System.out.println("1. Lunes a sábado de 6:00am a 2:00pm");
             System.out.println("2. Lunes a sábado de 2:00pm a 10:00pm");
@@ -301,10 +368,46 @@ public class SistemaMinasTennisClub {
             } else {
                 System.out.println("Ingresó un horario no valido");
             }
-            CaddieJugador caddieJugador = new CaddieJugador(nombre, edad, telefono, documento, categoria, contraseña, horario, rol);
+
+
+            System.out.println("Ingresa ciuad");
+            String ciuad = null;
+            for (int i = 0; i < sedes.size(); i++) {
+                System.out.println(i+". "+sedes.get(i).ciudad);
+            }
+
+            int optionInt = input.nextInt();
+
+            if (optionInt <sedes.size()){
+                ciuad = sedes.get(optionInt).ciudad;
+
+            }else {
+                System.out.println("Dato no valido");
+                return;
+            }
+
+            System.out.println("Ingresa Sede");
+            String nombreSede = null;
+            for (int i = 0; i < sedes.size(); i++) {
+                System.out.println(i+". "+sedes.get(i).ciudad);
+            }
+
+            optionInt = input.nextInt();
+
+            if (optionInt <sedes.size()){
+                nombreSede = sedes.get(optionInt).nombre;
+
+            }else {
+                System.out.println("Dato no valido");
+                return;
+            }
+
+            Sede sede = new Sede(nombreSede, ciuad);
+
+            CaddieJugador caddieJugador = new CaddieJugador(nombre, edad, telefono, documento, categoria, contraseña, horario, Rol);
             caddieJugadores.add(caddieJugador);
-            String Rol = "Caddie Jugador";
-            Persona persona = new Persona(nombre, edad, telefono, documento, categoria, contraseña, Rol);
+
+            Persona persona = new Persona(nombre,sede, edad, telefono, documento, categoria, contraseña, Rol);
             personas.add(persona);
         }
     }
@@ -359,6 +462,44 @@ public class SistemaMinasTennisClub {
 
     private static void AregarCancha() {
 
+
+        System.out.println("Ingresa ciuad");
+        String ciuad = null;
+        for (int i = 0; i < sedes.size(); i++) {
+            System.out.println(i+". "+sedes.get(i).ciudad);
+        }
+
+        int optionInt = input.nextInt();
+
+        if (optionInt <sedes.size()){
+            ciuad = sedes.get(optionInt).ciudad;
+
+        }else {
+            System.out.println("Dato no valido");
+            return; }
+
+        System.out.println("Ingresa Sede");
+        String nombreSede = null;
+        for (int i = 0; i < sedes.size(); i++) {
+            System.out.println(i+". "+sedes.get(i).ciudad);
+        }
+
+        optionInt = input.nextInt();
+
+        if (optionInt <sedes.size()){
+            nombreSede = sedes.get(optionInt).nombre;
+
+        }else {
+            System.out.println("Dato no valido");
+            return;
+        }
+
+
+        Sede sede = new Sede(nombreSede, ciuad);
+        sedes.add(sede);
+
+
+
         System.out.println("Ingrese el tipo de cancha");
 
         System.out.println("1. " + TipoCancha[0]);
@@ -377,16 +518,22 @@ public class SistemaMinasTennisClub {
             tipo = TipoCancha[2];
         } else {
             System.out.println("Valor invalido");
+            return;
 
         }
+
+
+
 
         boolean libre = true;
 
         String turnos = null;    // Que es turnos?
 
+
+
         int id = canchas.size() + 1;
 
-        Cancha cancha = new Cancha(turnos, tipo, libre, id);
+        Cancha cancha = new Cancha(turnos, tipo, libre, id,sede);
         System.out.println("" +
                 "Cancha Registrada" +
                 "=====================");
@@ -424,14 +571,62 @@ public class SistemaMinasTennisClub {
     }
 
 
-    private static void BuscarPersona() {
+    private static void Busquda() {
 
         System.out.println("Buscar por: ");
+
+        System.out.println("1. Ciudad");
+        System.out.println("2. Sede");
+        System.out.println("3. Cancha");
+        System.out.println("5. Rol");
+
+        String option = input.next();
+
+        if (option.equals(1)){
+            System.out.println("1. Valor exacto");
+            System.out.println("2. Valor sin considerar mayúsculas");
+            String option2 = input.next();
+            if (option2.equals(1)){
+                System.out.println("Ingresa el Nombre de la ciudad");
+                String ciudad = input.next();
+                int k;
+                for (int i = 0; i < sedes.size(); i++) {
+                    if (sedes.get(i).ciudad.equals(ciudad)){
+                        System.out.println("Ciudad Encontrada");
+                         k = i;
+                         resumeCiudad(ciudad);
+                        break;
+                    }
+                    }
+                }else if(option.equals(2)){
+                System.out.println("Ingresa el Nombre de la ciudad");
+                String ciudad = input.next();
+                ciudad = ciudad.toLowerCase();
+                int k;
+                for (int i = 0; i < sedes.size(); i++) {
+                    if (sedes.get(i).ciudad.toLowerCase().equals(ciudad)){
+                        System.out.println("Ciudad Encontrada");
+                        k = i;
+                        resumeCiudad(ciudad);
+                        break;
+                    }
+                }
+
+            }
+        } else if(option.equals(2)){
+
+
+        }
+
+
+
+
 
         System.out.println("1. Edad");
         System.out.println("2. Telefono");
         System.out.println("3. Rol");
-        String option = input.next();
+
+
 
         if (option.equals("1")) {
             System.out.println("Encontrar: ");
@@ -487,9 +682,46 @@ public class SistemaMinasTennisClub {
                 System.out.println("Valor invalido");
 
         }
-
-
     }
+
+    public static void resumeCiudad(String ciudad){
+        int numeroSedes=0;
+        int numeroCanchas=0;
+        int canchao=0;
+        int cancha1=0;
+        int cancha2=0;
+        for (int i = 0; i < sedes.size(); i++) {
+            if (sedes.get(i).ciudad.equals(ciudad)){
+                numeroSedes++;
+
+            }
+
+        }
+
+        for (int i = 0; i < canchas.size(); i++) {
+         if(canchas.get(i).sede.ciudad.equals(ciudad)){
+             numeroCanchas++;
+             if (canchas.get(i).tipo.equals(TipoCancha[0])){
+                 canchao++;
+             } else if(canchas.get(i).tipo.equals(TipoCancha[1])){
+                 cancha1++;
+             }else if(canchas.get(i).tipo.equals(TipoCancha[2])){
+                 cancha2++;
+             }
+         }
+        }
+
+        System.out.println("En la ciudad de "+ciudad+" Hay:");
+        System.out.println("* "+numeroSedes+" sedes");
+        System.out.println("* "+cancha1+cancha2+canchao+ " canchas");
+
+        System.out.println("   * "+canchao+" de tipo "+TipoCancha[0]);
+        System.out.println("   * "+cancha1+" de tipo "+TipoCancha[1]);
+        System.out.println("   * "+cancha2+" de tipo "+TipoCancha[2]);
+    }
+
+
+
 }
 
 
