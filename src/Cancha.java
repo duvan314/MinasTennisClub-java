@@ -5,7 +5,7 @@ public class Cancha {
     public boolean libre;
     public Sede sede;
 
-   // public Caddie caddie;
+    // public Caddie caddie;
 
     public Cancha(String turnos, String tipo, boolean libre, int id,Sede sede/*, Caddie caddie*/) {
         this.turnos = turnos;
@@ -13,7 +13,7 @@ public class Cancha {
         this.libre = libre;
         this.id=id;
         this.sede=sede;
-      //  this.caddie = caddie;
+        //  this.caddie = caddie;
     }
 
     public String getTurnos() {

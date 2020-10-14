@@ -1,31 +1,31 @@
- public class Jugador extends Persona {
-    public boolean escuela;
-    public boolean competencia;
+public class Jugador extends Persona {
+     public boolean escuela;
+     public boolean competencia;
 
-    public Jugador(String nombre, int edad, int telefono, int documento,String categoria, String contraseña, boolean escuela, boolean competencia, String rol) {
-        super(nombre, edad, telefono, documento, categoria, contraseña, rol);
-        this.competencia = competencia;
-    }
+     public Jugador(String nombre, int edad, int telefono, int documento,String categoria, String contraseña, boolean escuela, boolean competencia, String rol) {
+         super(nombre, edad, telefono, documento, categoria, contraseña, rol);
+         this.competencia = competencia;
+     }
 
-    public boolean isEscuela() {
+     public boolean isEscuela() {
 
-        return escuela;
-    }
+         return escuela;
+     }
 
-    public void setEscuela(boolean escuela) {
+     public void setEscuela(boolean escuela) {
 
-        this.escuela = escuela;
-    }
+         this.escuela = escuela;
+     }
 
-    public boolean isCompetencia() {
+     public boolean isCompetencia() {
 
-        return competencia;
-    }
+         return competencia;
+     }
 
-    public void setCompetencia(boolean competencia) {
+     public void setCompetencia(boolean competencia) {
 
-        this.competencia = competencia;
-    }
+         this.competencia = competencia;
+     }
 
      @Override
      public String toString() {

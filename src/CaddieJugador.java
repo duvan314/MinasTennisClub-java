@@ -3,7 +3,7 @@ public class CaddieJugador extends Persona {
 
 
     public CaddieJugador(String nombre, int edad, int telefono, int documento, String categoria, String contraseña, String horario, String role) {
-        super(nombre, edad, telefono, documento, categoria, contraseña, rol);
+        super(nombre, edad, telefono, documento, categoria, contraseña, role);
         this.horario = horario;
     }
 

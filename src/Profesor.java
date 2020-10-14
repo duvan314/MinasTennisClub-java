@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
- public class Profesor extends Persona {
+public class Profesor extends Persona {
     public String horario;
     public boolean libre;
     ArrayList<Jugador> alumno = new ArrayList<>();
@@ -11,18 +11,18 @@ import java.util.ArrayList;
         this.libre=libre;
     }
 
-     public String getHorario() {
-         return horario;
-     }
+    public String getHorario() {
+        return horario;
+    }
 
-     public void setHorario(String horario) {
-         this.horario = horario;
-     }
-
-
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
 
 
 
 
 
- }
+
+
+}
