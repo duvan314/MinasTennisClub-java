@@ -20,12 +20,15 @@ public class SistemaMinasTennisClub {
 
 
     public static void main(String[] args) {
-
+        System.out.println("");
 //
 //        Persona persona1 = new Persona("duvan", 52, 312425, 147852369, "1", "25852741258", "Profesor");
 //        personas.add(persona1);
 //        Persona persona2 = new Persona("duvan2", 52, 312425, 147852369, "1", "25852741258", "Profesor");
 //        personas.add(persona2);
+
+
+
 //        Persona persona3 = new Persona("duvan3", 524443, 312425, 147852369, "1", "25852741258", "Profesor");
 //        personas.add(persona3);
 //        Persona persona4 = new Persona("duvan4", 524443, 312425, 147852369, "1", "25852741258", "Profesor");
