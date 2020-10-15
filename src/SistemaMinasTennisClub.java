@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class SistemaMinasTennisClub {
-    public static Persona personaIngresar = null;
+    //public static Persona personaIngresar = null;
     public static Scanner input = new Scanner(System.in);
     public static ArrayList<Integer> documentos = new ArrayList<>();   ///  sujetos a ser eliminados
     public static ArrayList<String> contraseñas = new ArrayList<>();
@@ -74,7 +74,6 @@ public class SistemaMinasTennisClub {
 
             if (option.equals("1")) {
                 ingresar();
-                break;
             } else if (option.equals("2")) {
                 registrarse();
             } else if (option.equals("3")) {
@@ -91,31 +90,33 @@ public class SistemaMinasTennisClub {
     private static void ingresar() {
 
        // for (int i = 0; i < personas.size(); i++) { System.out.println(personas.get(i)); }
-        for(Persona persona : personas) {
-            System.out.println("Ingresa su documento");
-            int documento = input.nextInt();
-            if (VerificarUsuario((int) documento)) {
-                System.out.println("Ingresa la contraseña");
-                String contraseña = input.next();
-                if (VerificarContraseña(contraseña, documento)) {
-                    System.out.println("Acceso permitido");
+        while(true) {
+            for (Persona persona : personas) {
+                System.out.println("Ingresa su documento");
+                int documento = input.nextInt();
+                if (VerificarUsuario((int) documento)) {
+                    System.out.println("Ingresa la contraseña");
+                    String contraseña = input.next();
+                    if (VerificarContraseña(contraseña, documento)) {
+                        System.out.println("Acceso permitido");
 
-                    System.out.println("Bienvenido" + persona);
+                        System.out.println("Bienvenido" + persona);
 
+                    } else {
+                        System.out.println("Error, contraseña incorrecta. Por favor vuelva a ingresar los datos. ");
+                        return;
+                    }
                 } else {
-                    System.out.println("Error!!!!!!!!!!, contraseña incorrecta");
-
+                    System.out.println(documento + " No es un usuario correcto. Por favor vuelva a ingresar los datos. ");
                 }
-                return;
-            } else {
-                System.out.println(documento + " No es un usuario correcto");
+                break;
+
+
+                // Comprobar si existe el usuario en caso de que no dirigir al menú de registrarse con el mensaje "Usted aún no está registrado".
+                // Si existe el usuario, desplegar un menú con los métodos del rol del usuario (Caddie, Jugador, Profesor,...
             }
 
-
-            // Comprobar si existe el usuario en caso de que no dirigir al menú de registrarse con el mensaje "Usted aún no está registrado".
-            // Si existe el usuario, desplegar un menú con los métodos del rol del usuario (Caddie, Jugador, Profesor,...
         }
-
     }
 
 
