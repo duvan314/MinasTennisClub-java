@@ -100,7 +100,7 @@ public class SistemaMinasTennisClub {
                     if (VerificarContraseña(contraseña, documento)) {
                         System.out.println("Acceso permitido");
 
-                        System.out.println("Bienvenido" + persona);
+                        System.out.println("Bienvenido" + personas.get(personas.indexOf(documento)).getNombre());
 
                     } else {
                         System.out.println("Error, contraseña incorrecta. Por favor vuelva a ingresar los datos. ");
