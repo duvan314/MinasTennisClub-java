@@ -2,6 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class SistemaMinasTennisClub {
+    public static Persona personaIngresar = null;
     public static Scanner input = new Scanner(System.in);
     public static ArrayList<Integer> documentos = new ArrayList<>();   ///  sujetos a ser eliminados
     public static ArrayList<String> contraseñas = new ArrayList<>();
@@ -24,6 +25,15 @@ public class SistemaMinasTennisClub {
 
 
         System.out.println("");
+        Sede sede1 = new Sede("Sede Llanogrande", "Llanogrande");
+        Sede sede2 = new Sede("Sede Belén", "Medellín");
+        Sede sede3 = new Sede("Sede Marinilla","Marinilla");
+        Sede sede4 = new Sede("Sede Principal","Bogotá");
+
+        Persona persona1 = new Persona("Valentina Vanegas", sede1, 20, 2508317, 1000546978 ,"1", "1934", "Jugador");
+        personas.add(persona1);
+
+
 //
 //        Persona persona1 = new Persona("duvan", 52, 312425, 147852369, "1", "25852741258", "Profesor");
 //        personas.add(persona1);
@@ -64,6 +74,7 @@ public class SistemaMinasTennisClub {
 
             if (option.equals("1")) {
                 ingresar();
+                break;
             } else if (option.equals("2")) {
                 registrarse();
             } else if (option.equals("3")) {
@@ -79,31 +90,31 @@ public class SistemaMinasTennisClub {
 
     private static void ingresar() {
 
-        //for (int i = 0; i < personas.size(); i++) { System.out.println(personas.get(i)); }
+       // for (int i = 0; i < personas.size(); i++) { System.out.println(personas.get(i)); }
+        for(Persona persona : personas) {
+            System.out.println("Ingresa su documento");
+            int documento = input.nextInt();
+            if (VerificarUsuario((int) documento)) {
+                System.out.println("Ingresa la contraseña");
+                String contraseña = input.next();
+                if (VerificarContraseña(contraseña, documento)) {
+                    System.out.println("Acceso permitido");
 
-        System.out.println("Ingresa su documento");
-        int documento = input.nextInt();
+                    System.out.println("Bienvenido" + persona);
 
+                } else {
+                    System.out.println("Error!!!!!!!!!!, contraseña incorrecta");
 
-        if (VerificarUsuario(documento)) {
-            System.out.println("Ingresa la contraseña");
-            String contraseña = input.next();
-            if (VerificarContraseña(contraseña, documento)) {
-                System.out.println("Acceso permitido");
-
-                System.out.println("Bienvenido + jugar caddie");
-
+                }
+                return;
             } else {
-                System.out.println("Error!!!!!!!!!!, contraseña incorrecta");
+                System.out.println(documento + " No es un usuario correcto");
             }
-        } else {
-            System.out.println(documento + " No es un usuario correcto");
+
+
+            // Comprobar si existe el usuario en caso de que no dirigir al menú de registrarse con el mensaje "Usted aún no está registrado".
+            // Si existe el usuario, desplegar un menú con los métodos del rol del usuario (Caddie, Jugador, Profesor,...
         }
-
-
-        // Comprobar si existe el usuario en caso de que no dirigir al menú de registrarse con el mensaje "Usted aún no está registrado".
-        // Si existe el usuario, desplegar un menú con los métodos del rol del usuario (Caddie, Jugador, Profesor,...
-
 
     }
 
@@ -447,8 +458,8 @@ public class SistemaMinasTennisClub {
 
     private static boolean VerificarContraseña(String contraseña, int documento) {
         for (int i = 0; i < personas.size(); i++) {
-            if (personas.get(i).documento == documento & personas.get(i).documento == documento) {
-                // indice ddonde esta el usuario
+            if (personas.get(i).documento == documento & personas.get(i).contraseña == contraseña) {
+                // indice donde esta el usuario
                 return true;
             }
         }

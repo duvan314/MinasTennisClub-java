@@ -10,20 +10,20 @@ public class Sede  {
         this.nombre = nombre;
         this.ciudad = ciudad;
     }
-//
-//    public String getNombre() {
-//        return nombre;
-//    }
-//
-//    public void setNombre(String nombre) {
-//        this.nombre = nombre;
-//    }
-//
-//    public int getNumeroCanchas() {
-//        return ciudad;
-//    }
-//
-//    public void setNumeroCanchas(int numeroCanchas) {
-//        this.ciudad = numeroCanchas;
-//    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNumeroCanchas() {
+        return ciudad;
+    }
+
+    public void  setNumeroCanchas(String numeroCanchas) { //se cambio de int a String
+        this.ciudad = numeroCanchas;
+    }
 }

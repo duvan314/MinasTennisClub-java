@@ -2,7 +2,7 @@ public class Persona {
     public String nombre;
     public int edad;
     public int telefono;
-    public  int documento;
+    public int documento;
     public String categoria;
     public String contraseña;
     public String rol ;
@@ -10,7 +10,7 @@ public class Persona {
 
 
 
-    public Persona(String nombre, Sede sede, int edad, int telefono, int documento, String categoria, String contraseña, String rol) {
+    public Persona(String nombre, Sede sede, int edad, int telefono,int documento, String categoria, String contraseña, String rol) {
         this.nombre = nombre;
         this.edad = edad;
         this.telefono = telefono;
@@ -40,8 +40,7 @@ public class Persona {
         this.edad = edad;
     }
 
-    public int getTelefono() {
-        return telefono;
+    public int getTelefono() { return telefono;
     }
 
     public void setTelefono(int telefono) {
