@@ -20,6 +20,9 @@ public class SistemaMinasTennisClub {
 
 
     public static void main(String[] args) {
+
+
+
         System.out.println("");
 //
 //        Persona persona1 = new Persona("duvan", 52, 312425, 147852369, "1", "25852741258", "Profesor");
@@ -39,15 +42,9 @@ public class SistemaMinasTennisClub {
 //        AregarCancha();
 //        CanchaDisponible();
 //        FechaMañana();
+        //Busquda()
 
 
-        // canchas predeterminadas
-//        Cancha cancha1 = new Cancha("1", "Cancha", true, 1,ciudades[0], sedesMedellin[0]);
-//        Cancha cancha2 = new Cancha("2", "Mini Cancha", true, 2,ciudades[0], sedesMedellin[0]);
-//        Cancha cancha3 = new Cancha("3", "Cancha", true, 3,ciudades[1], sedesBogota[0]);
-//        canchas.add(cancha1);
-//        canchas.add(cancha2);
-//        canchas.add(cancha3);
 
 
         String option;
@@ -464,8 +461,8 @@ public class SistemaMinasTennisClub {
     private static void AregarCancha() {
 
 
-        System.out.println("Ingresa ciuad");
-        String ciuad = null;
+        System.out.println("Ingresa ciudad");
+        String ciudad = null;
         for (int i = 0; i < sedes.size(); i++) {
             System.out.println(i+". "+sedes.get(i).ciudad);
         }
@@ -473,7 +470,7 @@ public class SistemaMinasTennisClub {
         int optionInt = input.nextInt();
 
         if (optionInt <sedes.size()){
-            ciuad = sedes.get(optionInt).ciudad;
+            ciudad = sedes.get(optionInt).ciudad;
 
         }else {
             System.out.println("Dato no valido");
@@ -496,7 +493,7 @@ public class SistemaMinasTennisClub {
         }
 
 
-        Sede sede = new Sede(nombreSede, ciuad);
+        Sede sede = new Sede(nombreSede, ciudad);
         sedes.add(sede);
 
 
@@ -556,7 +553,6 @@ public class SistemaMinasTennisClub {
 
         }
 
-
     }
 
     public static void FechaMañana() {
@@ -569,6 +565,7 @@ public class SistemaMinasTennisClub {
         String newDate = sdf.format(c.getTime());
         //Displaying the new Date after addition of Days
         System.out.println(newDate);
+        Busquda();
     }
 
 
@@ -583,11 +580,11 @@ public class SistemaMinasTennisClub {
 
         String option = input.next();
 
-        if (option.equals(1)){
+        if (option.equals("1")){
             System.out.println("1. Valor exacto");
             System.out.println("2. Valor sin considerar mayúsculas");
             String option2 = input.next();
-            if (option2.equals(1)){
+            if (option2.equals("1")){
                 System.out.println("Ingresa el Nombre de la ciudad");
                 String ciudad = input.next();
                 int k;
@@ -599,7 +596,7 @@ public class SistemaMinasTennisClub {
                         break;
                     }
                 }
-            }else if(option.equals(2)){
+            }else if(option.equals("2")){
                 System.out.println("Ingresa el Nombre de la ciudad");
                 String ciudad = input.next();
                 ciudad = ciudad.toLowerCase();
@@ -613,30 +610,171 @@ public class SistemaMinasTennisClub {
                     }
                 }
 
+            } else {
+                System.out.println("Dato invalido");
+                return;
             }
-        } else if(option.equals(2)){
+        } else if(option.equals("2")){
+            System.out.println("1. Valor exacto");
+            System.out.println("2. Valor sin considerar mayúsculas");
+            String option2 = input.next();
+
+            if (option2.equals("1")){
+                System.out.println("Ingresa el Nombre de la Sede");
+                String sede = input.next();
+                int k;
+                for (int i = 0; i < sedes.size(); i++) {
+                    if (sedes.get(i).nombre.equals(sede)){
+                        System.out.println("Sede Encontrada");
+                        k = i;
+                        resumensede(sede);
+                        break;
+                    }
+                }
+            }else if(option.equals("2")){
+                System.out.println("Ingresa el Nombre de la sede");
+                String sede = input.next();
+                sede = sede.toLowerCase();
+                int k;
+                for (int i = 0; i < sedes.size(); i++) {
+                    if (sedes.get(i).ciudad.toLowerCase().equals(sede)){
+                        System.out.println("sede Encontrada");
+                        k = i;
+                        resumensede(sede);
+                        break;
+                    }
+                }
+
+            } else{
+                System.out.println("Dato invalido");
+                return;
+            }
+
+        }else if(option.equals("3")){
+            System.out.println("Busqueda cancha por:");
+            System.out.println("");
+
+        } else if(option.equals("4")){
+
+            System.out.println("Buscar por: ");
+            System.out.println("----------------");
+            System.out.println("1. Jugador");
+            System.out.println("2. Profesor");
+            System.out.println("3. Persona (toda la base de datos)");
 
 
+            System.out.println();
+
+            option = input.next();
+
+            if (option.equals("1")) {
+                String rol = "Jugador";
+                System.out.println("Buscar por: ");
+                System.out.println("1. Edad");
+                System.out.println("2. Telefono");
+                System.out.println("3. Categoria");
+
+                option = input.next();
+                if (option.equals("1")){
+                    buscarEdad(rol);
+                } else if(option.equals("2")){
+                     buscarTelefono(rol);
+                }else if(option.equals("3")){
+                     buscarCategoria(rol);
+                }else {
+                    System.out.println("ingreso invalido");
+                    return;
+                }
+            } else if (option.equals("2")) {
+                String rol = "Profesor";
+                System.out.println("Buscar por: ");
+                System.out.println("1. Edad");
+                System.out.println("2. Telefono");
+                System.out.println("3. Categoria");
+
+                option = input.next();
+
+                if (option.equals("1")){
+                    buscarEdad(rol);
+                } else if(option.equals("2")){
+                     buscarTelefono(rol);
+                }else if(option.equals("3")){
+                    buscarCategoria(rol);
+                }else {
+                    System.out.println("ingreso invalido");
+                    return;
+                }
+            } else if (option.equals("3")) {
+                String rol = "Persona";
+                System.out.println("Buscar por: ");
+                System.out.println("1. Edad");
+                System.out.println("2. Telefono");
+                System.out.println("3. Categoria");
+
+                option = input.next();
+                if (option.equals("1")){
+                    buscarEdad(rol);
+                } else if(option.equals("2")){
+                    buscarTelefono(rol);
+                }else if(option.equals("3")){
+                    buscarCategoria(rol);
+                }else {
+                    System.out.println("ingreso invalido");
+                    return;
+                }
+            }else {
+                System.out.println("Dato invalido");
+                return;
+            }
         }
 
 
+    }
 
 
+    public static void buscarTelefono(String rol){
+        System.out.println("ingresa el telenofo a buscar");
+        int option = input.nextInt();
 
-        System.out.println("1. Edad");
-        System.out.println("2. Telefono");
-        System.out.println("3. Rol");
+        if (rol.equals("Persona")){
+            System.out.println("el usuario del telefono "+option+" es: ");
+            for (Persona persona : personas) {
+                if (persona.telefono == option) {
+                    System.out.println(persona);
+                }
+            }
 
+        } else if (rol.equals("Profesor")){
+            System.out.println("el usuario del telefono "+option+" es: ");
+            for (Profesor profesor : profesores) {
+                if (profesor.telefono == option) {
+                    System.out.println(profesor);
+                }
+            }
 
+        } else if(rol.equals("Jugador")){
+            System.out.println("el usuario del telefono "+option+" es: ");
+            for (Jugador jugador : jugadores) {
+                if (jugador.telefono == option) {
+                    System.out.println(jugador);
+                }
+            }
+        }
+    }
 
-        if (option.equals("1")) {
-            System.out.println("Encontrar: ");
+    public static void buscarCategoria(String rol){
+        System.out.println("un falta hacer");
+    }
 
-            System.out.println("1. Mayor edad");
-            System.out.println("2. Menor edad");
-            System.out.println("3. Rango de edad");
-            String option2 = input.next();
+    public static void buscarEdad(String rol){
 
+        System.out.println("1. Mayor edad");
+        System.out.println("2. Menor edad");
+        System.out.println("3. Edad menor o igual a: ");
+        System.out.println("4. Edad mayor o igual a: ");
+        System.out.println("5. Edd exacta");
+        String option2 = input.next();
+        if (rol.equals("persona")) {
             if (option2.equals("1")) {
                 int edad = 0;
                 int k = 0;
@@ -645,15 +783,12 @@ public class SistemaMinasTennisClub {
                         edad = personas.get(i).getEdad();
                         k = i;
                     }
-
-
                 }
                 for (int i = 0; i < personas.size(); i++) {
                     if (personas.get(k).getEdad() == personas.get(i).getEdad()) {
                         System.out.println(personas.get(i));
                     }
                 }
-
             } else if (option2.equals("2")) {
                 int edad = 10000;
                 int k = 0;
@@ -662,26 +797,156 @@ public class SistemaMinasTennisClub {
                         edad = personas.get(i).getEdad();
                         k = i;
                     }
-
                 }
                 for (int i = 0; i < personas.size(); i++) {
                     if (personas.get(k).getEdad() == personas.get(i).getEdad()) {
                         System.out.println(personas.get(i));
                     }
                 }
-            } else if (option.equals("3")) {
-                System.out.println("el ango de edad es: ");
-            } else {
+            } else if (option2.equals("3")) {
+                System.out.println("Ingresa la edad");
+                int option = input.nextInt();
+
+                for (int i = 0; i < personas.size(); i++) {
+                    if (personas.get(i).getEdad() >= option) {
+                        System.out.println(personas.get(i));
+                    }
+                }
+            } else if (option2.equals("4")) {
+                System.out.println("Ingresa la edad");
+                int option = input.nextInt();
+
+                for (int i = 0; i < personas.size(); i++) {
+                    if (personas.get(i).getEdad() <= option) {
+                        System.out.println(personas.get(i));
+                    }
+                }
+            } else if (option2.equals("5")) {
+                System.out.println("Ingresa la edad");
+                int option = input.nextInt();
+
+                for (int i = 0; i < personas.size(); i++) {
+                    if (personas.get(i).getEdad() == option) {
+                        System.out.println(personas.get(i));
+                    }
+                }
 
             }
-        } else if (option.equals("2")) {
-            System.out.println("  ");
 
-        } else if (option.equals("3")) {
+        }else if (rol.equals("Jugador")){
+            if (option2.equals("1")) {
+                int edad = 0;
+                int k = 0;
+                for (int i = 0; i < jugadores.size(); i++) {
+                    if (jugadores.get(i).getEdad() > edad) {
+                        edad = jugadores.get(i).getEdad();
+                        k = i;
+                    }
+                }
+                for (int i = 0; i < jugadores.size(); i++) {
+                    if (jugadores.get(k).getEdad() == jugadores.get(i).getEdad()) {
+                        System.out.println(jugadores.get(i));
+                    }
+                }
+            } else if (option2.equals("2")) {
+                int edad = 10000;
+                int k = 0;
+                for (int i = 0; i < jugadores.size(); i++) {
+                    if (jugadores.get(i).getEdad() < edad) {
+                        edad = jugadores.get(i).getEdad();
+                        k = i;
+                    }
+                }
+                for (int i = 0; i < jugadores.size(); i++) {
+                    if (jugadores.get(k).getEdad() == jugadores.get(i).getEdad()) {
+                        System.out.println(jugadores.get(i));
+                    }
+                }
+            } else if (option2.equals("3")) {
+                System.out.println("Ingresa la edad");
+                int option = input.nextInt();
 
-        } else {
-            System.out.println("Valor invalido");
+                for (int i = 0; i < jugadores.size(); i++) {
+                    if (jugadores.get(i).getEdad() >= option) {
+                        System.out.println(jugadores.get(i));
+                    }
+                }
+            } else if (option2.equals("4")) {
+                System.out.println("Ingresa la edad");
+                int option = input.nextInt();
 
+                for (int i = 0; i < jugadores.size(); i++) {
+                    if (jugadores.get(i).getEdad() <= option) {
+                        System.out.println(jugadores.get(i));
+                    }
+                }
+            } else if (option2.equals("5")) {
+                System.out.println("Ingresa la edad");
+                int option = input.nextInt();
+
+                for (int i = 0; i < jugadores.size(); i++) {
+                    if (jugadores.get(i).getEdad() == option) {
+                        System.out.println(jugadores.get(i));
+                    }
+                }
+            }
+        }else if(rol.equals("Profesor")){
+            if (option2.equals("1")) {
+                int edad = 0;
+                int k = 0;
+                for (int i = 0; i < profesores.size(); i++) {
+                    if (profesores.get(i).getEdad() > edad) {
+                        edad = profesores.get(i).getEdad();
+                        k = i;
+                    }
+                }
+                for (int i = 0; i < profesores.size(); i++) {
+                    if (profesores.get(k).getEdad() == profesores.get(i).getEdad()) {
+                        System.out.println(profesores.get(i));
+                    }
+                }
+            } else if (option2.equals("2")) {
+                int edad = 10000;
+                int k = 0;
+                for (int i = 0; i < profesores.size(); i++) {
+                    if (profesores.get(i).getEdad() < edad) {
+                        edad = profesores.get(i).getEdad();
+                        k = i;
+                    }
+                }
+                for (int i = 0; i < profesores.size(); i++) {
+                    if (profesores.get(k).getEdad() == profesores.get(i).getEdad()) {
+                        System.out.println(profesores.get(i));
+                    }
+                }
+            } else if (option2.equals("3")) {
+                System.out.println("Ingresa la edad");
+                int option = input.nextInt();
+
+                for (int i = 0; i < profesores.size(); i++) {
+                    if (profesores.get(i).getEdad() >= option) {
+                        System.out.println(profesores.get(i));
+                    }
+                }
+            } else if (option2.equals("4")) {
+                System.out.println("Ingresa la edad");
+                int option = input.nextInt();
+
+                for (int i = 0; i < profesores.size(); i++) {
+                    if (profesores.get(i).getEdad() <= option) {
+                        System.out.println(profesores.get(i));
+                    }
+                }
+            } else if (option2.equals("5")) {
+                System.out.println("Ingresa la edad");
+                int option = input.nextInt();
+
+                for (int i = 0; i < profesores.size(); i++) {
+                    if (profesores.get(i).getEdad() == option) {
+                        System.out.println(profesores.get(i));
+                    }
+                }
+            }
         }
     }
 
@@ -721,8 +986,43 @@ public class SistemaMinasTennisClub {
         System.out.println("   * "+cancha2+" de tipo "+TipoCancha[2]);
     }
 
+    public static void resumensede(String sede){
+        int numeroSedes=0;
+        int numeroCanchas=0;
+        int canchao=0;
+        int cancha1=0;
+        int cancha2=0;
+        for (int i = 0; i < sedes.size(); i++) {
+            if (sedes.get(i).nombre.equals(sede)){
+                numeroSedes++;
 
+            }
+
+        }
+
+        for (int i = 0; i < canchas.size(); i++) {
+            if(canchas.get(i).sede.nombre.equals(sede)){
+                numeroCanchas++;
+                if (canchas.get(i).tipo.equals(TipoCancha[0])){
+                    canchao++;
+                } else if(canchas.get(i).tipo.equals(TipoCancha[1])){
+                    cancha1++;
+                }else if(canchas.get(i).tipo.equals(TipoCancha[2])){
+                    cancha2++;
+                }
+            }
+        }
+
+        System.out.println("En la sede "+sede+" Hay:");
+        System.out.println("* "+numeroSedes+" sedes");
+        System.out.println("* "+cancha1+cancha2+canchao+ " canchas");
+
+        System.out.println("   * "+canchao+" de tipo "+TipoCancha[0]);
+        System.out.println("   * "+cancha1+" de tipo "+TipoCancha[1]);
+        System.out.println("   * "+cancha2+" de tipo "+TipoCancha[2]);
+    }
 
 }
+
 
 
