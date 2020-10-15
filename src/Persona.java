@@ -75,6 +75,18 @@ public class Persona {
         return contraseña.indexOf(contraseña);
     }
 
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
     @Override
     public String toString() {
         return "Persona{" +

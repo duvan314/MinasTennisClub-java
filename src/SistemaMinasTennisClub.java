@@ -101,7 +101,15 @@ public class SistemaMinasTennisClub {
                         System.out.println("Acceso permitido");
 
                         System.out.println("Bienvenido" + personas.get(personas.indexOf(documento)).getNombre());
-
+                        if (personas.get(personas.indexOf(documento)).getRol().equals("Caddie")){
+                            // Acceda a los métodos de caddie
+                        } else if (personas.get(personas.indexOf(documento)).getRol().equals("Caddie jugador")){
+                            // Acceda a los métodos de caddie jugador
+                        } else if (personas.get(personas.indexOf(documento)).getRol().equals("Profesor")){
+                            // Acceda a los métodos de caddie
+                        } else if (personas.get(personas.indexOf(documento)).getRol().equals("Jugador")){
+                            // Acceda a los métodos de caddie
+                        }
                     } else {
                         System.out.println("Error, contraseña incorrecta. Por favor vuelva a ingresar los datos. ");
                         return;
